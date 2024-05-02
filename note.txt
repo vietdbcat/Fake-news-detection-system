@@ -1,0 +1,3 @@
+- trong dữ liệu ban đầu, mô hình sử dụng các trường dl ntn để phân biệt đâu là tin giả?
+- công việc cụ thể của mô hình transformer là gì trong bài toán?
+- 
