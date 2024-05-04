@@ -5,15 +5,6 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 
-# from tensorflow.keras.layers import Embedding
-# from tensorflow.keras.preprocessing.sequence import pad_sequences
-# from tensorflow.keras.models import Sequential, load_model, save_model
-# from tensorflow.keras.preprocessing.text import one_hot
-# from tensorflow.keras.layers import LSTM
-# from tensorflow.keras.layers import Dense
-# import tensorflow as tf
-# from tensorflow.keras.layers import Dropout
-
 import nltk
 import re
 from nltk.corpus import stopwords

@@ -1,0 +1,8 @@
+pandas
+numpy
+configparser
+scikit-learn
+tensorflow
+nltk
+keras
+tqdm
