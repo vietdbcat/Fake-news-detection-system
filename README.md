@@ -17,6 +17,11 @@ Sử dụng mô hình học máy mạng tích chập để huấn luyện dữ l
 ```
 
 ### Cách vận hành
+- Cài đặt các thư viện cần thiết
+```bash
+pip install -r requirement.txt
+```
+
 - Thay đổi được dẫn đến thư mục dự án ở các file predict.py và train.py
 ```python
 #example
@@ -25,12 +30,12 @@ sys.path.append("C:\\Users\\BAOVIET\\FakeNews-Detection-System")
 ```
 
 - Huấn luyện dữ liệu
-```python
+```bash
 python sources/model/train.py
 ```
 
 - Dự đoán nhãn từ dữ liệu đầu vào
-```python
+```bash
 python sources/model/predict.py
 ```
 
