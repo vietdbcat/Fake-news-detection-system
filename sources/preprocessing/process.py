@@ -49,8 +49,10 @@ class Process:
             
         return dt_cp, label
     
-    def process_test_data(self, data_path : str):
-        data = pd.read_csv(data_path)
+    def process_test_data(self, data_path):
+        # data = pd.read_csv(data_path)
+        
+        data = data_path
         
         dt = data.fillna(0)
         dt_cp = dt.copy()

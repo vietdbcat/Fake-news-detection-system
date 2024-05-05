@@ -17,6 +17,7 @@ Sử dụng mô hình học máy mạng tích chập để huấn luyện dữ l
 ```
 
 ### Cách vận hành
+- Cài đặt Python phiên bản >= 3.11
 - Cài đặt các thư viện cần thiết
 ```bash
 pip install -r requirement.txt
