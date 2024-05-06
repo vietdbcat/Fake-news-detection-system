@@ -1,7 +1,12 @@
+import sys
+
+sys.path.append("/home/huy31/Projects/Fake-news-detection-system")
+
+import tensorflow as tf
+
 import pandas as pd
 import numpy as np
 
-import nltk
 import re
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer

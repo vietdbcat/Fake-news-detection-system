@@ -1,8 +1,9 @@
 import sys
-sys.path.append("C:\\Users\\BAOVIET\\OneDrive\\Máy tính\\Tai lieu hoc tap\\2024\\FakeNews-Detection-System")
+sys.path.append("/home/huy31/Projects/Fake-news-detection-system")
+
 
 from tranformers import TransformerModel
-from sources.preprocessing.process import Process
+from process import Process
 from configparser import ConfigParser
 from sklearn.model_selection import train_test_split
 
