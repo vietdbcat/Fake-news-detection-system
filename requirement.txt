@@ -1,4 +1,11 @@
-pandas==2.2.2
-numpy==1.26.4
-tensorflow==2.15.0
+pandas
+tranformers
+numpy
+tensorflow
 nltk==3.2.4
+configparser
+scikit-learn
+keras
+tqdm
+fastapi
+supabase

@@ -1,8 +1,9 @@
 import sys
-sys.path.append("/home/huy31/Projects/Fake-news-detection-system")
+sys.path.append("/home/huy31/Projects/KDLKP/Fake-news-detection-system")
 
-from tranformers import TransformerModel
-from process import Process
+import numpy as np
+from .model import TransformerModel
+from .process import Process
 from configparser import ConfigParser
 import pandas as pd
 
@@ -18,21 +19,13 @@ vocab_size = config.getint("Model", "vocab_size")
 max_len = config.getint("Model", "max_len")
 weights = config.get("Model", "weights")
 
-data_path = config.get("Data", "test")
 
-data = {
-    "author": "Dr. Maximilian Holland",
-    "title": "US Officials See No Link Between Trump and Russia",
-    "text": "The auto market saw plugin EVs take 91.0% share in Norway in April, roughly flat from 91.1% year on year. BEVs alone took 89.4% share, up from 83.3% YoY. Overall auto volume was 11,241 units, up 25% YoY, a recovery over recent months. April’s best selling BEV…",
-}
-df = pd.DataFrame.from_dict(data, orient='index').T
-
-model = TransformerModel(max_len, vocab_size, embed_dim, num_head, ff_dim)
-model.load_weights(weights)
-
-preprocess = Process(vocab_size, max_len)
-X, _ = preprocess.process_test_data(df)
-
-print('X', X);
-label = model.predict(X)
-print(label[0][0])
+def predict(data):
+    model = TransformerModel(max_len, vocab_size, embed_dim, num_head, ff_dim)
+    model.load_weights(weights)
+    preprocess = Process(vocab_size, max_len)
+    df = pd.DataFrame.from_dict(data, orient='index').T
+    X, _ = preprocess.process_test_data(df)    
+    label = model.predict(X)
+    result = float(np.array(label[0]))
+    return result

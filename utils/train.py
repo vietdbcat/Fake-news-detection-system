@@ -1,13 +1,14 @@
 import sys
-sys.path.append("/home/huy31/Projects/Fake-news-detection-system")
+sys.path.append("/home/huy31/Projects/KDLKP/Fake-news-detection-system")
 
 
-from tranformers import TransformerModel
+
+from model import TransformerModel
 from process import Process
 from configparser import ConfigParser
 from sklearn.model_selection import train_test_split
 
-config_path = 'sources/config/config.ini'
+config_path = 'utils/config.ini'
 
 config = ConfigParser()
 config.read(config_path)

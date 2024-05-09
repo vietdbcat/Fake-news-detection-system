@@ -1,6 +1,6 @@
 import sys
 
-sys.path.append("/home/huy31/Projects/Fake-news-detection-system")
+sys.path.append("/home/huy31/Projects/KDLKP/Fake-news-detection-system")
 
 import tensorflow as tf
 
