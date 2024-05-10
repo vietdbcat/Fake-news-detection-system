@@ -1,5 +1,7 @@
-import sys
-sys.path.append("/home/huy31/Projects/KDLKP/Fake-news-detection-system")
+import sys, os
+from dotenv import load_dotenv 
+load_dotenv()
+sys.path.append(os.environ.get("FOLDER_PATH"))
 
 import numpy as np
 from .model import TransformerModel

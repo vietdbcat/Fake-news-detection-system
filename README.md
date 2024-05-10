@@ -17,29 +17,33 @@ Sử dụng mô hình học máy mạng tích chập để huấn luyện dữ l
 ```
 
 ### Cách vận hành
-- Cài đặt Python phiên bản >= 3.11
+- Cài đặt Python phiên bản >= 3.10
 - Cài đặt các thư viện cần thiết
 ```bash
 pip install -r requirement.txt
 ```
 
-- Thay đổi được dẫn đến thư mục dự án ở các file predict.py và train.py
+- Thay đổi được dẫn đến thư mục dự án ở các file .env
 ```python
 #example
-import sys
-sys.path.append("C:\\Users\\BAOVIET\\FakeNews-Detection-System")
+FOLDER_PATH=/home/huy31/Projects/KDLKP/Fake-news-detection-system
 ```
 
 - Huấn luyện dữ liệu
 ```bash
-python sources/model/train.py
+python utils/train.py
 ```
 
 - Dự đoán nhãn từ dữ liệu đầu vào
 ```bash
-python sources/model/predict.py
+python utils/predict.py
+```
+
+- Run server
+```bash
+fastapi dev main.py
 ```
 
 ### Mô hình
 - Path: data/model/
-- Mã nguồn mô hình: sources/model/tranformers.py
+- Mã nguồn mô hình: utils/model
