@@ -31,7 +31,7 @@ class Process:
         corpus = []
 
         for i in tqdm(range(0, len(dt_cp))):
-            review = re.sub('[^a-zA-Z]', ' ', str(dt_cp['title'][i]))
+            review = re.sub('[^a-zA-Z]', ' ', str(dt_cp['text'][i]))
             review = review.lower()
             review = review.split()
 
@@ -54,14 +54,14 @@ class Process:
         
         data = data_path
         
-        dt = data.fillna(0)
+        dt = data.dropna()
         dt_cp = dt.copy()
         dt_cp.reset_index(inplace = True)
         
         corpus = []
 
         for i in tqdm(range(0, len(dt_cp))):
-            review = re.sub('[^a-zA-Z]', ' ', str(dt_cp['title'][i]))
+            review = re.sub('[^a-zA-Z]', ' ', str(dt_cp['text'][i]))
             review = review.lower()
             review = review.split()
 

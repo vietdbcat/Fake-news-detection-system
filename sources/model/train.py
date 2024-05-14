@@ -5,6 +5,7 @@ from tranformers import TransformerModel
 from sources.preprocessing.process import Process
 from configparser import ConfigParser
 from sklearn.model_selection import train_test_split
+import json
 
 config_path = 'sources/config/config.ini'
 
@@ -29,3 +30,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 model.fit(X_train, y_train, validation_data = (X_test, y_test), epochs = 10, batch_size = 32)
 model.save(weights)
+
+with open('history.json', 'w') as f:
+    json.dump(model.history.history, f)

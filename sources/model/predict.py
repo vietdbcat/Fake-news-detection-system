@@ -34,4 +34,4 @@ preprocess = Process(vocab_size, max_len)
 X, _ = preprocess.process_test_data(df)
 
 label = model.predict(X)
-print(label[0][0])
+print(label[0][0]) 
