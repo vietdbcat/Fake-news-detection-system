@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="icon">NHÓM 7</div>
+        <div class="nav">
+            <div class="add-news">
+                <a href="add_news.html">Push news</a>
+            </div>
+            <div class="news">
+                <a href="news.html">News</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="title">
+            <h1>News</h1>
+        </div>
+        <div class="filter">
+            <select id="filter" onchange="getValue(this)">
+                <option value="2">Show all news</option>
+                <option value="1">Show real news</option>
+                <option value="0">Show fake news</option>
+            </select>
+        </div>
+        <div class="news">
+            <ul id="show_news">
+                
+            </ul>
+        </div>
+
+        <div class="paginate">
+            <div class="lable"><h3>Page:</h3></div>
+            <input type="text" value="1" id="paginate_input">
+            <div class="total"><h3>/209</h3></div>
+        </div>
+    </div>
+</body>
+<style>
+    *{
+        padding: 0px;
+        margin: 0px;
+    }
+    header{
+        display: flex;
+        justify-content: start;
+        font-size: 20px;
+        background-color: blue;
+        height: 50px;
+        color:white;
+        align-items: center;
+    }
+    header .icon{
+        margin-left: 50px;
+    }
+    header .nav{
+        margin-left: 100px;
+        display: flex;
+        justify-content: space-between;
+        width: 200px;
+    }
+
+    header .nav div:hover{
+        text-decoration: underline;
+    }
+
+    header .nav div a{
+        color:white;
+        text-decoration: none;
+    }
+
+    .content{
+        margin: 20px;
+    }
+    .content .title{
+        text-align: center;
+        color:blue;
+        margin-bottom: 20px;
+    }
+    .content .news ul{
+        list-style: none;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 15px;
+        grid-row-gap: 20px;
+    }
+
+    .content .news ul li{
+        height: 225px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border: 2px solid aqua;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow:  10px 10px 5px rgba(0, 0, 0, 0.5);
+        transition-property: transform;
+        transition-duration: 0.3s;
+        transition-timing-function: 0.3s;
+        transition-delay: 0s;
+    }
+    .content .news ul li:hover{
+        transform: translateY(-10px);
+    }
+    .content .news ul li div{
+        margin: 10px;
+    
+    }
+    .content .news ul li a{
+        text-decoration: none;
+        color:black;
+    }
+    .content .news ul li .name{
+        height: 60px;
+    }
+    .content .news ul li .text{
+        height: 100px;
+        overflow: hidden;
+    }
+    .paginate{
+        margin-top: 30px;
+        font-size: 18px;
+        margin-left: 50px;
+        text-align: center;
+    }
+    .paginate div{
+        display: inline-block;
+    }
+    .paginate input{
+        width: 35px;
+        height: 28px;
+        font-size: 18px;
+        text-align: center;
+    }
+    .show_real{
+        border-radius: 5px;
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+    }
+    .filter{
+        margin-bottom: 35px;
+        
+    }
+
+    .filter select{
+        width: 120px;
+        height: 30px;
+    }
+</style>
+
+<script>
+    function getValue(object)
+    {
+        var val = parseInt(object.value);  
+        localStorage.setItem("type",JSON.stringify(val));
+        const res = JSON.parse(localStorage.getItem("news"));
+        let show_news = document.getElementById("show_news")
+        show_news.innerHTML = "";
+        if(val == 2)
+        {
+            res.forEach((data)=>{
+                let color = "";
+                let real_news = ""
+                
+                if(data.label == true){
+                    color = "aqua";
+                    real_news = "Real news"
+                }
+                else{
+                    color = "red";
+                    real_news = "Fake news"
+                }
+                
+                let brief = data.text.slice(0, 260) + "..." 
+                show_news.innerHTML += `
+                <li class="show-news">
+                    <a href="/frontend/news_detail.html?id=${data.id}">
+                        <div class="show_real" style='background-color:${color}'>${real_news}</div>
+                        <div class="name">${data.title}</div>
+                        <div class="text">${brief}</div>
+                    </a>           
+                </li>
+                `
+            })
+        }
+        else if(val == 1)
+        {
+            res.forEach((data)=>{
+                if(data.label == true){
+                    let color = "";
+                let real_news = ""
+                
+                if(data.label == true){
+                    color = "aqua";
+                    real_news = "Real news"
+                }
+                else{
+                    color = "red";
+                    real_news = "Fake news"
+                }
+                
+                let brief = data.text.slice(0, 260) + "..." 
+                show_news.innerHTML += `
+                <li class="show-news">
+                    <a href="/frontend/news_detail.html?id=${data.id}">
+                        <div class="show_real" style='background-color:${color}'>${real_news}</div>
+                        <div class="name">${data.title}</div>
+                        <div class="text">${brief}</div>
+                    </a>           
+                </li>
+                `
+                }
+                
+            })
+        }
+        else if(val == 0)
+        {
+            res.forEach((data)=>{
+                if(data.label == false){
+                    let color = "";
+                let real_news = ""
+                
+                if(data.label == true){
+                    color = "aqua";
+                    real_news = "Real news"
+                }
+                else{
+                    color = "red";
+                    real_news = "Fake news"
+                }
+                
+                let brief = data.text.slice(0, 260) + "..." 
+                show_news.innerHTML += `
+                <li class="show-news">
+                    <a href="/frontend/news_detail.html?id=${data.id}">
+                        <div class="show_real" style='background-color:${color}'>${real_news}</div>
+                        <div class="name">${data.title}</div>
+                        <div class="text">${brief}</div>
+                    </a>           
+                </li>
+                `
+                }
+                
+            })
+        }
+
+    }
+    let texts = document.getElementsByClassName('text')
+    for(let i = 0; i < texts.length ; i++)
+    {
+        let content = texts[i].innerHTML.substring(0, 160) + "...";
+        texts[i].innerHTML = content
+    }
+
+    function news(page){
+        fetch(`http://127.0.0.1:8000/get_news?page=${page}`)
+        .then((res) => {
+            return res.json()
+        })
+        .then(res => {
+            document.getElementById("filter").value = "2";
+            let show_news = document.getElementById("show_news")
+            show_news.innerHTML = "";
+            localStorage.setItem("news", JSON.stringify(res))
+            const val = JSON.parse(localStorage.getItem("type"));
+            res.forEach((data)=>{
+                let color = "";
+                let real_news = ""
+                
+                if(data.label == true){
+                    color = "aqua";
+                    real_news = "Real news"
+                }
+                else{
+                    color = "red";
+                    real_news = "Fake news"
+                }
+                
+                let brief = data.text.slice(0, 260) + "..." 
+                show_news.innerHTML += `
+                <li class="show-news">
+                    <a href="/frontend/news_detail.html?id=${data.id}">
+                        <div class="show_real" style='background-color:${color}'>${real_news}</div>
+                        <div class="name">${data.title}</div>
+                        <div class="text">${brief}</div>
+                    </a>           
+                </li>
+                `
+            })
+        })
+    }
+    let paginate_input = document.getElementById("paginate_input")
+    paginate_input.addEventListener("keypress", function(event){
+        if (event.key === "Enter"){
+            let num = paginate_input.value;
+            if(isNaN(parseInt(num))){
+                alert("Page khong hop le")
+            }
+            else
+            {
+                news(parseInt(num))
+            }
+        }
+    })
+    news(1)
+</script>
+
+</html>

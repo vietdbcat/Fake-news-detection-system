@@ -1,0 +1,24 @@
+Activating environment...
+Update data...
+Update data successfully!
+Get data successfully!
+Re-train data...
+2024-05-16 23:59:22.867799: I external/local_tsl/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2024-05-16 23:59:23.035574: I external/local_tsl/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2024-05-16 23:59:23.659684: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-05-16 23:59:34.648995: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Traceback (most recent call last):
+  File "/home/huy31/Projects/KDLKP/Fake-news-detection-system/utils/train.py", line 18, in <module>
+    embed_dim = config.getint("Model", "embed_dim")
+  File "/home/huy31/miniconda3/envs/fakenew/lib/python3.10/configparser.py", line 820, in getint
+    return self._get_conv(section, option, int, raw=raw, vars=vars,
+  File "/home/huy31/miniconda3/envs/fakenew/lib/python3.10/configparser.py", line 810, in _get_conv
+    return self._get(section, conv, option, raw=raw, vars=vars,
+  File "/home/huy31/miniconda3/envs/fakenew/lib/python3.10/configparser.py", line 805, in _get
+    return conv(self.get(section, option, **kwargs))
+  File "/home/huy31/miniconda3/envs/fakenew/lib/python3.10/configparser.py", line 783, in get
+    d = self._unify_values(section, vars)
+  File "/home/huy31/miniconda3/envs/fakenew/lib/python3.10/configparser.py", line 1154, in _unify_values
+    raise NoSectionError(section) from None
+configparser.NoSectionError: No section: 'Model'

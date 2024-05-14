@@ -67,7 +67,7 @@ class Process:
         corpus = []
 
         for i in tqdm(range(0, len(dt_cp))):
-            review = re.sub('[^a-zA-Z]', ' ', str(dt_cp['title'][i]))
+            review = re.sub('[^a-zA-Z]', ' ', str(dt_cp['text'][i]))
             review = review.lower()
             review = review.split()
 
