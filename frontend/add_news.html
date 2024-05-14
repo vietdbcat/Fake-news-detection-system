@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="icon">NHÓM 7</div>
+        <div class="nav">
+            <div class="add-news">
+                <a href="add_news.html">Push news</a>
+            </div>
+            <div class="news">
+                <a href="news.html">News</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="form">
+            <div class="title"><h1>Push news</h1></div>
+            <div class="show_true_news" id="show_true_news">This is real information</div>
+            <div class="error" id="error" style="display: none;"></div>
+            <form>
+                <div class="title-news">
+                    <label for="">Title</label>
+                    <input type="text" placeholder="Title" id="title">
+                </div>
+                <div class="author">
+                    <label for="">Author</label>
+                    <input type="text" placeholder="Author" id="author">
+                </div>
+                <div class="text">
+                    <label for="">Content</label>
+                    <input type="text" placeholder="Text" id="text">
+                </div>
+            </form>
+            <button onclick="handClick(event)">Push news</button>
+        </div>
+    </div>
+
+
+</body>
+<script>
+    function handClick(event)
+    {
+        document.getElementById("error").style.display="none";
+        document.getElementById("error").innerHTML = "";
+        document.getElementById("show_true_news").style.display = "none";
+        let title = document.getElementById('title').value;
+        let author = document.getElementById('author').value;
+        let text = document.getElementById('text').value;
+        if(title == null || title == "" || title == " " || text == null || text == "" || text == " ")
+        {
+            document.getElementById("error").style.display="block";
+            document.getElementById("error").innerHTML = "You can not blank the input field";
+        }
+        else{
+            const data = {
+                title: title,
+                author: author || "unknown",
+                text: text
+            }
+            fetch('http://127.0.0.1:8000/push_new',{
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then((res) => {
+                return res.json()
+            })
+            .then((res)=>{
+                
+                true_news =""
+                if(res > 0.5) true_news = "This is real information"
+                else {
+                    true_news = "This is fake news"
+                }
+                document.getElementById("show_true_news").innerHTML = true_news
+                document.getElementById("show_true_news").style.display = "block";
+
+            })
+        }
+    }
+</script>
+<style>
+    *{
+        padding: 0px;
+        margin: 0px;
+    }
+    header{
+        display: flex;
+        justify-content: start;
+        font-size: 20px;
+        background-color: blue;
+        height: 50px;
+        color:white;
+        align-items: center;
+    }
+    header .icon{
+        margin-left: 50px;
+    }
+    header .nav{
+        margin-left: 100px;
+        display: flex;
+        justify-content: space-between;
+        width: 200px;
+    }
+
+    header .nav div:hover{
+        text-decoration: underline;
+    }
+
+    header .nav div a{
+        color:white;
+        text-decoration: none;
+    }
+
+    .content{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+        font-size: 30px;
+    }
+    
+    .content .form{
+        width: 1000px;
+        border: 1px solid #d9dddc; 
+        border-radius: 10px;
+    }
+
+    .content .form div{
+        height: 50px;
+    }
+
+    .content .form .title{
+        text-align: center;
+        margin-top: 5px;
+        color: blue;
+        font-size: 15px;
+    }
+
+    .content .form form{
+        margin: 20px;
+    }
+
+    .content .form form label{
+        width: 150px;
+        display: inline-block;
+    }
+
+    .content .form form input{
+        height: 30px;
+        width: 700px;
+    }
+
+    .content button{
+        height: 40px;
+        width: 180px;
+        margin-left: 410px;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-bottom: 5px;
+        font-size: 25px;
+        background-color: #63C5DA;
+        color: white;
+    }
+    .content .form .error{
+        color:red;
+        font-size: 30px;
+        margin-left: 20px;
+    }
+
+    .show_true_news{
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 5px;
+        line-height: 50px;
+        display: none;
+        background-color: aqua;
+    }
+</style>
+</html>
