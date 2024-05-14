@@ -13,20 +13,22 @@ df = pd.read_csv('data/raw/train.csv')
 
 data = []
 
-for index, row in df.iterrows():
-    json_str = row.to_json()
-    json_data = json.loads(json_str)
-    data.append({
-        "title": json_data["title"],
-        "author": json_data["author"],
-        "text": json_data["text"],
-        "label": json_data["label"]
-    })
+print(len(df))
+
+# for index, row in df.iterrows():
+#     json_str = row.to_json()
+#     json_data = json.loads(json_str)
+#     data.append({
+#         "title": json_data["title"],
+#         "text": json_data["text"],
+#         "author": "Anonymous",
+#         "label": 0
+#     })
     
-    if len(data) == 1000:
-        supabase.table('new').insert(data).execute()
-        data.clear()
-        print("done")
+#     if len(data) == 1000:
+#         supabase.table('new').insert(data).execute()
+#         data.clear()
+#         print("done")
         
-supabase.table('new').insert(data).execute()
+# supabase.table('new').insert(data).execute()
 

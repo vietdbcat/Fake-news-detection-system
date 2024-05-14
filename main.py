@@ -67,14 +67,17 @@ def push_new(
 
 @app.get("/get_news")
 def get_news(
+    id: str = Query(None, description="Filter news by id"),
     page: int = Query(1, description="Filter news by page"),
     author: str = Query(None, description="Filter news by author"),
     title: str = Query(None, description="Filter news by title"),
-    fromDate: str = Query('2024-05-10', description="Filter news by from date"),
-    endDate: str = Query('2024-05-11', description="Filter news by end date")
+    fromDate: str = Query(None, description="Filter news by from date"),
+    endDate: str = Query(None, description="Filter news by end date")
 ):
     query = supabase.table('new').select("*")
     
+    if id:
+        query = query.eq("id", f"{id}")
     if author:
         query = query.ilike("author", f"%{author}%")
     if title:
@@ -88,9 +91,11 @@ def get_news(
         
     result = query\
         .order("created_at", desc=True)\
-        .offset((page - 1) * 10)\
-        .limit(page * 10)\
+        .offset((page - 1) * 9)\
+        .limit(9)\
         .execute()
+        
+    print(len(result.data))
     return result.data
 
 

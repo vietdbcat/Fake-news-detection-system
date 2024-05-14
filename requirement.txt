@@ -1,5 +1,4 @@
 pandas
-tranformers
 numpy
 tensorflow
 nltk==3.2.4

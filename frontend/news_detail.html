@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="icon">NHÓM 7</div>
+        <div class="nav">
+            <div class="add-news">
+                <a href="add_news.html">Push news</a>
+            </div>
+            <div class="news">
+                <a href="news.html">News</a>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <div class="button" id="button"></div>
+        <div class="title" id="show_title">
+        </div>
+        <div class="author" id="show_author">Author: </div>
+        <div class="text" id="show_text">
+        </div>
+    </div>
+</body>
+<style>
+     *{
+        padding: 0px;
+        margin: 0px;
+    }
+    header{
+        display: flex;
+        justify-content: start;
+        font-size: 20px;
+        background-color: blue;
+        height: 50px;
+        color:white;
+        align-items: center;
+    }
+    header .icon{
+        margin-left: 50px;
+    }
+    header .nav{
+        margin-left: 100px;
+        display: flex;
+        justify-content: space-between;
+        width: 200px;
+    }
+
+    header .nav div:hover{
+        text-decoration: underline;
+    }
+
+    header .nav div a{
+        color:white;
+        text-decoration: none;
+    }
+
+    .content{
+        margin: 50px;
+    }
+    .content .title{
+        font-size: 20px;
+        color: blue;
+        margin-bottom: 20px
+    }
+    #show_author{
+        margin-bottom: 10px;
+    }
+    .content .button{
+        margin-bottom: 20px;
+        display: inline-block;
+        width: 150px;
+        height: 30px;
+        
+        line-height: 30px;
+    }
+   
+</style>
+<script>
+    function getNews(id, news)
+    {
+        for(let i = 0; i < news.length; i++)
+        {
+            if(id == news[i].id) return news[i]
+        }
+    }
+    let news = JSON.parse(localStorage.getItem("news"));
+    const url = ""+window.location.href;
+    const id = url.split("=")[1]
+    const news_one = getNews(id, news)
+    document.getElementById("show_title").innerHTML=news_one.title;
+    document.getElementById("show_author").innerHTML+=news_one.author;
+    document.getElementById("show_text").innerHTML=news_one.text;
+    if (news_one.label == false){
+        document.getElementById("button").innerHTML = `Fake new`
+        document.getElementById("button").style.backgroundColor = "red";
+    }else{
+        document.getElementById("button").innerHTML = "Real new"
+        document.getElementById("button").style.backgroundColor = "aqua";
+    }
+    // document.getElementById("button").
+</script>
+</html>
